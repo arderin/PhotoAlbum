@@ -1,0 +1,20 @@
+<div class="photo-containter" ng-controller="PhotoCtrl">
+	<div class="photo-wrapper">
+		<div class="photo-header">
+			<image class="photo-image" ng-attr-id="{{photo.id}}" ng-src="{{photo.photo_link}}"/>
+			</br>
+			<div class="photo-owner"><b>{{photo.owner.email}}</b> - {{photo.timestamp | date:'shortDate'}}</div>
+			{{photo.description}}
+			<a style="float:right" href="" ng-show="auth && user.email == photo.owner.email" ng-click="deletePhoto()">Delete</a>
+			<form ng-show="auth" >
+				<textarea ng-model="comment" placeholder="Comment..."></textarea>
+				<button class="btn btn-default" ng-click="addComment()">Comment</button>
+			</form>
+		</div>
+		<image ng-show="saving" src="images/ajax-loader.gif" class="ajax-loader"/>
+		<div class="comment" ng-repeat="c in photo.comments">
+			<div class="comment-header">{{c.owner.email}} - {{c.timestamp | date:'shortDate'}}<a ng-show="auth && user.email == c.owner.email" style="float:right" href="" ng-click="deleteComment(c)">Delete</a></div>
+			<div class="comment-text">{{c.comment_text}}</div>
+		</div>
+	</div>
+<div>

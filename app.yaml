@@ -1,0 +1,37 @@
+application: your-app-id
+version: 1
+runtime: python27
+threadsafe: true
+api_version: 1
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+- name: endpoints 
+  version: latest
+
+handlers:
+# Static assets
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+- url: /js
+  static_dir: static/js
+- url: /css
+  static_dir: static/css
+- url: /images
+  static_dir: static/images
+- url: /lib
+  static_dir: static/lib
+- url: /views
+  static_dir: static/views
+
+# Endpoints handlers
+- url: /_ah/spi/.*
+  script: lib.api.application
+
+
+- url: /.*
+  script: main.application

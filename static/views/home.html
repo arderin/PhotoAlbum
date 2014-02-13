@@ -1,0 +1,12 @@
+<div ng-controller="HomeCtrl">
+    <button ng-show="auth" class="btn btn-default" ng-click="addPhoto()">Add New</button>
+    <ul class='photo-thumbnail-container'>
+	   <li  class="photo-thumbnail-item" ng-repeat="p in photos">
+	   		<a href="#photo/{{p.id}}">
+	   	 		<image ng-attr-id="{{p.id}}" ng-src="{{p.photo_link}}"></image>
+	   	 		</br>
+	   	 		<div class="description">{{p.description}}</div>
+   	 		</a>
+	   </li>
+    </ul>
+</div>
